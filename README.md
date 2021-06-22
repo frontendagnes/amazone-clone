@@ -12,7 +12,7 @@ Projekt został stworzone przez [create-react-app](https://github.com/facebook/c
 * [material-ui](https://material-ui.com/) - grafiki w aplikacji
 * [moment](https://momentjs.com/) - tworzenie czasu
 * [react-currency-format](https://www.npmjs.com/package/react-currency-format) - wyświetlanie cen
-* [flip-move](hhttps://github.com/joshwcomeau/react-flip-move) - animacja
+* [flip-move](https://github.com/joshwcomeau/react-flip-move) - animacja
 * [react-router-dom](https://reactrouter.com/web/guides/quick-start) - nawigacja na stronie
 * [react-slick](https://react-slick.neostack.com/) - slider
 
