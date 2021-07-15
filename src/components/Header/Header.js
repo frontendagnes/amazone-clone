@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../utility/StateProvider";
 import { auth } from "../../utility/firebase";
+
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
   const [search, setSearch] = useState("");
   const [searchActive, setSearchActive] = useState(false);
+
   const handleAuthenticaton = () => {
     if (user) {
       auth.signOut();
@@ -22,11 +25,15 @@ function Header() {
   return (
     <div className="header" id="header">
       <Link to="/">
-        <img
+      <div className="header__logo">
+        <p>Store</p>
+        <CallMissedOutgoingIcon style={{color: "#f49934", fontSize: 42}}/>
+      </div>
+        {/* <img
           className="header__logo"
           src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
           alt=""
-        />
+        /> */}
       </Link>
       <div className={headerSearchStyle}>
         <input
@@ -53,7 +60,7 @@ function Header() {
         <Link to="/orders">
           <div className="header__option">
             <span className="header__optionLineOne">Zwroty</span>
-            <span className="header__optionLineTwo">i Zamówinia</span>
+            <span className="header__optionLineTwo">i Zamówienia</span>
           </div>
         </Link>
         {/* <div className="header__option">

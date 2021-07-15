@@ -11,7 +11,7 @@ import { db } from "../../utility/firebase";
 import FlipMove from "react-flip-move";
 import firebase from "firebase";
 import ID from "../../utility/uniqueID";
-import moment from "moment";
+// import moment from "moment";
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
 

@@ -8,10 +8,19 @@
     z-index: 100;
 }
 .header__logo{
-    width: 100px;
-    object-fit: contain;
     margin: 0 20px;
     margin-top: 18px;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 5px;
+}
+.header__logo > p {
+    margin-bottom: -15px;
 }
 .header__search{
     display: flex;

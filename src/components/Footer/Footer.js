@@ -1,7 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import { Link } from "react-router-dom";
-
+import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 function Footer() {
   return (
     <div className="footer">
@@ -17,8 +16,8 @@ function Footer() {
         <div className="footer__collumn">
           <ul>
             <li>Zarabiaj z nami</li>
-            <li>Sprzedawaj na Amazon</li>
-            <li>Realizacja przez Amazon (FBA)</li>
+            <li>Sprzedawaj w Store</li>
+            <li>Realizacja przez Store</li>
             <li>Program partnerski</li>
             <li>Wydawaj z nami niezależne publikacje</li>
           </ul>
@@ -44,12 +43,16 @@ function Footer() {
             <li>Koszty i zasady dostaw</li>
             <li>Zwroty i wymiana</li>
             <li>Recykling</li>
-            <li>Aplikacja Amazon</li>
+            <li>Aplikacja Store</li>
             <li>Dział Obsługi Klienta</li>
           </ul>
         </div>
       </div>
-      <img className="footer__logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" />
+      {/* <img className="footer__logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" /> */}
+      <div className="footer__logo">
+        <p>Store</p>
+        <CallMissedOutgoingIcon style={{color: "#f49934", fontSize: 42}}/>
+      </div>
     </div>
   );
 }
