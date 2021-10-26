@@ -1,6 +1,9 @@
 # Amazon Fake Clone
 
-Strona sklepu na podstawie amazona. Dane DEMO do zalogowania i sprawdzenia aplikacji to:
+Strona sklepu na podstawie amazona. W aplikacji można złożyć fikcyjne zamówienie oraz podejrzeć złożone wczesniej zamówienia. Układ strony wykonany za pomocą flexboxa.
+Logowanie do aplikacji stworzone za pomocą firebase Authentication.
+
+Dane DEMO do zalogowania i sprawdzenia aplikacji to:
 
 e-mail: admin@admin.com
 pass: admin1234
@@ -8,7 +11,7 @@ pass: admin1234
 ## Documentation
 Projekt został stworzone przez [create-react-app](https://github.com/facebook/create-react-app), w aplikacji zostały użyte następujące rozwiązania:
 
-* [firebase](https://www.npmjs.com/package/firebase) - baza danych (proszę o podłączenie własnej bazy danych)
+* [firebase](https://www.npmjs.com/package/firebase) - baza danych
 * [material-ui](https://material-ui.com/) - grafiki w aplikacji
 * [moment](https://momentjs.com/) - tworzenie czasu
 * [react-currency-format](https://www.npmjs.com/package/react-currency-format) - wyświetlanie cen

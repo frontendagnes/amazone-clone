@@ -24,7 +24,6 @@ function Login() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log("Auth >>>", auth)
         if (auth) {
           history.push("/");
         }
