@@ -45,8 +45,8 @@ Wszystkie pozostałe niezbędne informację znajdują się tutaj: [create-react-
 
 
 ## Contribute
-* Source Code: https://github.com/zabula81/amazone-clone
-* Issue Tracker: https://github.com/zabula81/amazone-clone/issues
+* Source Code: https://github.com/frontendagnes/amazone-clone
+* Issue Tracker: https://github.com/frontendagnes/amazone-clone/issues
 * View: https://e-clone-eb7a4.web.app/
 
 ## Author
