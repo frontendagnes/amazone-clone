@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 import { auth, onAuthStateChanged } from "./utility/firebase";
 import { useStateValue } from "./utility/StateProvider";
-
+//mui
+import CircularProgress from "@mui/material/CircularProgress";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 //components
@@ -41,52 +42,75 @@ function App() {
     });
   }, [dispatch]);
 
+  const renderLoader = () => (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "20px",
+        alignItems: "center",
+      }}
+    >
+      <CircularProgress color="success" />
+      <span
+        style={{
+          marginLeft: "10px",
+          letterSpacing: "3px",
+        }}
+      >
+        Loading...
+      </span>
+    </div>
+  );
+
   return (
     <div className="app">
-      <Routes>
-        <Route
-          path="/orders"
-          element={
-            <>
-              <Header />
-              <Orders />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/checkout"
-          element={
-            <>
-              <Header />
-              <Checkout />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/payment"
-          element={
-            <>
-              <Header />
-              <Payment />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Home />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="*" element={<NoMatch />} />
-      </Routes>
+      <Suspense fallback={renderLoader()}>
+        <Routes>
+          <Route
+            path="/orders"
+            element={
+              <>
+                <Header />
+                <Orders />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/checkout"
+            element={
+              <>
+                <Header />
+                <Checkout />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <>
+                <Header />
+                <Payment />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Home />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
