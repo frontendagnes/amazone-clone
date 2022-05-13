@@ -1,22 +1,46 @@
 import React from "react";
 import { useStateValue } from "../../utility/StateProvider";
 import "./Payment.css";
-import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
+
 import { Link, useNavigate } from "react-router-dom";
 // import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { getBasketTotal } from "../../utility/reducer";
 import CurrencyFormat from "react-currency-format";
 // import axios from "../../utility/axios";
-import { db } from "../../utility/firebase";
+import {
+  db,
+  serverTimestamp,
+  addDoc,
+  doc,
+  collection,
+} from "../../utility/firebase";
 import FlipMove from "react-flip-move";
-import firebase from "firebase";
-import ID from "../../utility/uniqueID";
-// import moment from "moment";
+//component
+import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
+
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
 
   const history = useNavigate();
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const refDoc = doc(db, "users", user?.uid);
+    const ref = collection(refDoc, "orders");
+
+    await addDoc(ref, {
+      basket: basket,
+      amount: getBasketTotal(basket),
+      created: serverTimestamp(),
+    })
+      .then(() => {
+        dispatch({ type: "EMPTY_BASKET" });
+        history("/orders");
+      })
+      .catch((error) => console.log("Add to basket error>>", error.message));
+  };
+
+  //full stack
   // const stripe = useStripe();
   // const elements = useElements();
 
@@ -39,25 +63,6 @@ function Payment() {
   //   getClientSecret();
   // }, [basket]);
   // console.log("the secret iss >>>", clientSecret);
-
-  // tylko fron-end
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    db.collection("users")
-      .doc(user?.uid) // id
-      .collection("orders")
-      .doc(ID())
-      .set({
-        basket: basket,
-        amount: getBasketTotal(basket),
-        created: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-    dispatch({
-      type: "EMPTY_BASKET",
-    });
-
-    history("/orders");
-  };
 
   // dla full-stack
   // const handleSubmit = async (event) => {
@@ -169,7 +174,10 @@ function Payment() {
                   {/* <span>{processing ? <p>Processing</p> : "Buy Now"}</span> */}
                   Kup Teraz
                 </button>
-                <p>To nie jest prawdziwy sklep, towary nie zostaną wysłane a po wybraniu przycisku Kup Teraz nie trzeba realizować płatności.</p>
+                <p>
+                  To nie jest prawdziwy sklep, towary nie zostaną wysłane a po
+                  wybraniu przycisku Kup Teraz nie trzeba realizować płatności.
+                </p>
               </div>
               {/* Error */}
               {/* {error && <div>{error}</div>} */}

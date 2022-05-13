@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-import { auth } from "./utility/firebase";
+import { auth, onAuthStateChanged } from "./utility/firebase";
 import { useStateValue } from "./utility/StateProvider";
 
 // import { loadStripe } from "@stripe/stripe-js";
@@ -24,7 +24,7 @@ function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
     // will only run one when the app components loads
-    auth.onAuthStateChanged((authUser) => {
+    onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
         // the user just logged in / the user was logged in
         dispatch({
@@ -54,7 +54,6 @@ function App() {
             </>
           }
         />
-
         <Route path="/login" element={<Login />} />
         <Route
           path="/checkout"

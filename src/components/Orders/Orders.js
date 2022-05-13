@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Orders.css";
-import { db } from "../../utility/firebase";
+import {
+  db,
+  doc,
+  onSnapshot,
+  orderBy,
+  collection,
+  query,
+} from "../../utility/firebase";
 import { useStateValue } from "../../utility/StateProvider";
 import Order from "../Order/Order";
 import Login from "../Login/Login";
@@ -9,22 +16,25 @@ function Orders() {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     if (user) {
-      db.collection("users")
-        .doc(user?.uid)
-        .collection("orders")
-        .orderBy("created", "desc")
-        .onSnapshot((snapshot) =>
-          setOrders(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              data: doc.data(),
-            }))
-          )
+      const docRef = doc(db, "users", user?.uid);
+      const ref = collection(docRef, "orders");
+      const sortRef = query(ref, orderBy("created", "desc"));
+
+      const unsuscribe = onSnapshot(sortRef, (snapshot) => {
+        setOrders(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
         );
-    } else {
-      setOrders([]);
+      });
+
+      return () => {
+        unsuscribe();
+      };
     }
   }, [user]);
+
   return (
     <div className="orders">
       {user ? (

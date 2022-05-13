@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 //state
 import { useStateValue } from "../../utility/StateProvider";
 //api
-import { auth } from "../../utility/firebase";
+import { auth, signOut } from "../../utility/firebase";
 
 function Header() {
   const [{ basket, user }] = useStateValue();
@@ -18,7 +18,7 @@ function Header() {
 
   const handleAuthenticaton = () => {
     if (user) {
-      auth.signOut();
+      signOut(auth);
     }
   };
   const headerSearchStyle = searchActive

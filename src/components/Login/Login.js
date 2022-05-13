@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../utility/firebase";
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "../../utility/firebase";
 
 function Login() {
   const history = useNavigate();
@@ -11,18 +15,18 @@ function Login() {
   const signIn = (e) => {
     e.preventDefault();
     //firebase login
-    auth
-      .signInWithEmailAndPassword(email, password)
+
+    signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        history('/');
+        history("/");
       })
       .catch((error) => alert(error.massage));
   };
   const register = (e) => {
     e.preventDefault();
     //firabase register
-    auth
-      .createUserWithEmailAndPassword(email, password)
+
+    createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         if (auth) {
           history("/");
@@ -65,7 +69,8 @@ function Login() {
           By signing-in you agree to AMAZON FAKE CLONE Conditions of Use & Sale.
           Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice. <br /> <br />
-          To jest FAKE Clone wersja pokazowa nie realizuję zamówień a wszystkie podane dane są chronione.
+          To jest FAKE Clone wersja pokazowa nie realizuję zamówień a wszystkie
+          podane dane są chronione.
         </p>
         <button onClick={register} className="login__registerButton">
           Załóż konto
