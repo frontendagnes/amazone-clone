@@ -3,16 +3,16 @@ import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "../../utility/StateProvider";
 import { getBasketTotal } from "../../utility/reducer";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Subtotal() {
-    const history = useHistory();
+    const history = useNavigate();
     const [{ basket, user }] = useStateValue();
     const handleClick = () => {
       if(!user || basket.length === 0){
         alert("Jesteś nie zalogowany lub masz pusty koszyk")
       } else{
-        history.push('/payment')
+        history('/payment')
       }
     }
   return (

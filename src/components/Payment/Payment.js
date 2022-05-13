@@ -2,7 +2,7 @@ import React from "react";
 import { useStateValue } from "../../utility/StateProvider";
 import "./Payment.css";
 import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { getBasketTotal } from "../../utility/reducer";
 import CurrencyFormat from "react-currency-format";
@@ -15,7 +15,7 @@ import ID from "../../utility/uniqueID";
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
 
-  const history = useHistory();
+  const history = useNavigate();
 
   // const stripe = useStripe();
   // const elements = useElements();
@@ -56,7 +56,7 @@ function Payment() {
       type: "EMPTY_BASKET",
     });
 
-    history.replace("/orders");
+    history("/orders");
   };
 
   // dla full-stack

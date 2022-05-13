@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header/Header.js";
 import Home from "./components/Home/Home.js";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
 import { auth } from "./utility/firebase";
@@ -23,7 +23,6 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // the user just logged in / the user was logged in
-        console.log(auth)
         dispatch({
           type: "SET_USER",
           user: authUser,
@@ -39,37 +38,52 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
-      <div className="app">
-        <Switch>
-          <Route path="/orders">
-            <Header />
-            <Orders />
-            <Footer />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/checkout">
-            <Header />
-            <Checkout />
-            <Footer />
-          </Route>
-          <Route path="/payment">
-            <Header />
-            {/* <Elements stripe={promise}>  */}
+    <div className="app">
+      <Routes>
+        <Route
+          path="/orders"
+          element={
+            <>
+              <Header />
+              <Orders />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/checkout"
+          element={
+            <>
+              <Header />
+              <Checkout />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <>
+              <Header />
               <Payment />
-            {/* </Elements> */}
-            <Footer />
-          </Route>
-          <Route path="/">
-            <Header />
-            <Home />
-            <Footer />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Home />
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 
