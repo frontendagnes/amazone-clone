@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useStateValue } from "../../utility/StateProvider";
 import "./Payment.css";
 import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";

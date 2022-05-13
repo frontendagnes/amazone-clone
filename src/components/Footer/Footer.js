@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
+import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
 function Footer() {
   return (
     <div className="footer">

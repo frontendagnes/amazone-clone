@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "./Header.css";
-import SearchIcon from "@material-ui/icons/Search";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
+//.mui
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
+
 import { Link } from "react-router-dom";
+//state
 import { useStateValue } from "../../utility/StateProvider";
+//api
 import { auth } from "../../utility/firebase";
 
-
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user }] = useStateValue();
   const [search, setSearch] = useState("");
   const [searchActive, setSearchActive] = useState(false);
 
@@ -47,7 +50,7 @@ function Header() {
         <SearchIcon className="header__searchIcon" fontSize="large" />
       </div>
       <div className="heaer__nav">
-        <Link to={!user && "/login"}>
+        <Link to={!user ? "/login" : "/"}>
           <div onClick={handleAuthenticaton} className="header__option">
             <span className="header__optionLineOne">
               Witamy, {user ? user.email : "Gościu"}

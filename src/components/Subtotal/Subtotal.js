@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 function Subtotal() {
     const history = useHistory();
-    const [{ basket, user }, dispatch] = useStateValue();
+    const [{ basket, user }] = useStateValue();
     const handleClick = () => {
       if(!user || basket.length === 0){
         alert("Jesteś nie zalogowany lub masz pusty koszyk")
