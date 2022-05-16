@@ -25,6 +25,7 @@ function Orders() {
           snapshot.docs.map((doc) => ({
             id: doc.id,
             data: doc.data(),
+            // timestamp: doc.data().created.toDate(),
           }))
         );
       });
